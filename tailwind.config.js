@@ -25,15 +25,16 @@ module.exports = {
         gray600: '#252D4A',
         gray700: '#181C2A',
         gray800: '#0E1116',
+        red: '',
 
         'gradient-vertical': `linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)`,
         'gradient-horizontal': `linear-gradient(90deg, #7FD1CC 0%, #9694F5 100%)`
       },
       gridTemplateColumns: {
-        feed: '15% 55% 30%'
+        feed: '15% 50% 35%'
       },
       gridTemplateRows: {
-        feed: '6% 94%'
+        feed: '7% 93%'
       }
     }
   },

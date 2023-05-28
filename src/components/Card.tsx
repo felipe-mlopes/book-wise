@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import avatarUrl from '../assets/images/avatarUrl.svg';
 import book from '../assets/images/book.svg';
+import { StarRating } from './StarRating';
 
 export function Card() {
   return (
-    <div className="flex flex-col gap-8 p-6 bg-gray700 rounded-lg">
+    <div className="space-y-8 p-6 bg-gray700 rounded-lg cursor-pointer border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
           <Image
-            src={avatarUrl}
+            src="https://avatars.githubusercontent.com/u/60843113?v=4"
             alt=""
             width={40}
             height={40}
@@ -20,12 +20,18 @@ export function Card() {
             <p className="text-gray400 text-sm">Hoje</p>
           </div>
         </div>
-        <div>Stars</div>
+        <StarRating fill={4} />
       </div>
 
       {/* Content */}
       <div className="flex gap-5">
-        <Image src={book} alt="" width={108} height={152} className="w-[6.75rem] h-[9.5rem] rounded" />
+        <Image
+          src={book}
+          alt=""
+          width={108}
+          height={152}
+          className="w-[6.75rem] h-[9.5rem] rounded"
+        />
         <div className="flex flex-col justify-between gap-5">
           <div>
             <strong className="text-gray100 text-base">O Hobbit</strong>

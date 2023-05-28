@@ -1,17 +1,14 @@
-import Image from "next/image";
-import book2 from '../assets/images/book2.svg'
+import { BookDetails } from './BookDetails';
 
-export function BookCard() {
+interface BookCardProps {
+  w: string;
+  h: string;
+}
+
+export function BookCard({ w, h }: BookCardProps) {
   return (
-    <div className="flex px-5 py-4 rounded-lg bg-gray700">
-      <Image src={book2} alt="" width={64} height={94}className="w-16 h-[5.875rem] rounded" />
-      <div className="flex flex-col justify-between">
-        <div>
-          <strong className="text-gray100 text-base">A revolução dos bichos</strong>
-          <p className="text-gray400 text-sm">George Orwell</p>
-        </div>
-        Stars
-      </div>
+    <div className="space-y-5 px-5 py-4 rounded-lg bg-gray700 cursor-pointer border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600">
+      <BookDetails width={w} height={h} />
     </div>
-  )
+  );
 }

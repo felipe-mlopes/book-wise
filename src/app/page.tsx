@@ -10,13 +10,13 @@ export default function Home() {
       <Hero />
 
       <div className="flex flex-col items-start justify-center gap-10 pl-20">
-        <div className="flex flex-col gap-[2px]">
+        <div className="space-y-0.5">
           <h3 className="text-2xl font-bold">Boas vindas!</h3>
           <p className="text-gray200 text-base">
             Faça seu login ou acesse como visitante.
           </p>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="space-y-4">
           <LoginButton icon={google} content="Entrar com Google" href="" />
           <LoginButton icon={github} content="Entrar com GitHub" href="" />
           <LoginButton icon={rocket} content="Acessar como visitante" href="/feed" />

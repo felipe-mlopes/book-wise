@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 interface LoginButtonProps {
   icon: string;
   content: string;
@@ -14,3 +13,4 @@ export function LoginButton({ icon, content, href }: LoginButtonProps) {
     </a>
   );
 }
+

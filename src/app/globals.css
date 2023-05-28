@@ -8,6 +8,7 @@
   margin: 0;
 }
 
-html, body {
-  background-color: #0E1116;
+button,
+input {
+  all: unset;
 }
