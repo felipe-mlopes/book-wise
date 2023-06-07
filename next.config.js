@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    appDir: true,
+    serverComponentsExternalPackages: ['@prisma/client']
+  },
   images: {
-    domains: ['avatars.githubusercontent.com']
+    domains: ['avatars.githubusercontent.com', 'lh3.googleusercontent.com']
   }
 }
 

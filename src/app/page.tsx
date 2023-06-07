@@ -1,10 +1,21 @@
-import { Hero } from "@/components/Hero";
-import { LoginButton } from "@/components/LoginButton";
-import google from '../assets/icons/google.svg'
-import github from '../assets/icons/github.svg'
+import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+
+import { Hero } from "@/components/Home/Hero";
+import { LoginOptions } from "@/components/Global/LoginOptions";
+
 import rocket from '../assets/icons/rocket.svg'
 
-export default function Home() {
+
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    redirect('/feed')
+  }
+
   return (
     <div className="grid min-h-screen grid-cols-2 bg-gray800 text-gray100 py-5 pl-5">
       <Hero />
@@ -16,11 +27,16 @@ export default function Home() {
             Faça seu login ou acesse como visitante.
           </p>
         </div>
-        <div className="space-y-4">
-          <LoginButton icon={google} content="Entrar com Google" href="" />
-          <LoginButton icon={github} content="Entrar com GitHub" href="" />
-          <LoginButton icon={rocket} content="Acessar como visitante" href="/feed" />
-        </div>
+          <div className="space-y-4">
+            <LoginOptions />
+            <a 
+              href="/feed"
+              className={`flex items-center gap-5 py-5 px-6 bg-gray600 rounded-md cursor-pointer hover:bg-gray500`}
+            >
+              <Image src={rocket} alt="logo" width={32} height={32} />
+              <strong className="text-lg text-gray200 mr-16">Acessar como visitante</strong>
+            </a>
+          </div>
       </div>
     </div>
   )

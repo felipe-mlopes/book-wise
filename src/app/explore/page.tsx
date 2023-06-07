@@ -1,7 +1,7 @@
-import { BookCard } from '../../components/BookCard';
-import { SearchInput } from '../../components/SearchInput';
-import { Sidebar } from '../../components/Sidebar';
-import { Tags } from '../../components/Tags';
+import { BookCard } from '../../components/Global/BookCard';
+import { SearchInput } from '../../components/Global/SearchInput';
+import { Sidebar } from '../../components/Global/Sidebar';
+import { Tags } from '../../components/Explore/Tags';
 
 import { Search } from 'lucide-react';
 

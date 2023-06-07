@@ -12,9 +12,11 @@ module.exports = {
       colors: {
         white: '#FFFFFF',
         black: '#000000',
+        green50: '#7FD1CC',
         green100: '#50B2C0',
         green200: '#255D6A',
         green300: '#0A313C',
+        purple50: '#9694F5',
         purple100: '#8381D9',
         purple200: '#2A2879',
         gray100: '#F8F9FC',
@@ -25,10 +27,14 @@ module.exports = {
         gray600: '#252D4A',
         gray700: '#181C2A',
         gray800: '#0E1116',
-        red: '',
-
-        'gradient-vertical': `linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)`,
-        'gradient-horizontal': `linear-gradient(90deg, #7FD1CC 0%, #9694F5 100%)`
+        red: '#F75A68'
+      },
+      boxShadow: {
+        modal: '4px 16px 24px rgba(0, 0, 0, 0.25)'
+      },
+      animation: {
+        overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+        contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)'
       },
       gridTemplateColumns: {
         feed: '15% 50% 35%'
@@ -47,6 +53,7 @@ module.exports = {
   plugins: [
     plugin(function ({ addVariant }) {
       addVariant('current', '&:active::before')
-    })
+    }),
+    require('tailwind-scrollbar')
   ]
 }

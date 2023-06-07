@@ -1,8 +1,8 @@
 import { User2 } from 'lucide-react';
-import { BookDetails } from '../../components/BookDetails';
-import { SearchInput } from '../../components/SearchInput';
-import { Sidebar } from '../../components/Sidebar';
-import { Analytics } from '@/components/Anaylitsc';
+import { BookDetails } from '../../components/Global/BookDetails';
+import { SearchInput } from '../../components/Global/SearchInput';
+import { Sidebar } from '../../components/Global/Sidebar';
+import { Analytics } from '../../components/Profile/Analytics';
 
 export default function Explore() {
   return (

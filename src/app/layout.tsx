@@ -1,3 +1,4 @@
+import { Provider } from '@/components/Provider'
 import './globals.css'
 import { Nunito } from 'next/font/google'
 
@@ -15,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${nunito.variable} bg-gray800`}>{children}</body>
+      <body className={`${nunito.variable} bg-gray800`}>
+        <Provider>
+          {children}
+        </Provider>    
+      </body>
     </html>
   )
 }

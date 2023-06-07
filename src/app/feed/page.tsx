@@ -1,9 +1,10 @@
-import { Card } from '../../components/Card';
-import { Sidebar } from '../../components/Sidebar';
-import { BookCard } from '../../components/BookCard';
+import { Card } from '../../components/Feed/Card';
+import { Sidebar } from '../../components/Global/Sidebar';
+import { BookCard } from '../../components/Global/BookCard';
 
 import { ChevronRight } from 'lucide-react';
 import { LineChart } from 'lucide-react';
+import { LastBook } from '../../components/Feed/LastBook';
 
 export default function Feed() {
   return (
@@ -18,7 +19,7 @@ export default function Feed() {
       <main className="row-span-2 space-y-10 ml-8">
         <section className="flex flex-col gap-4 max-w-[40rem]">
           <div className="flex items-center justify-between">
-            <span className="text-gray100 text-sm">Sua última leitura</span>
+            <p className="text-gray100 text-sm">Sua última leitura</p>
             <a
               href=""
               className="flex items-center gap-2 py-1 px-2 rounded text-purple100 text-sm font-bold cursor-pointer hover:bg-purple100 hover:bg-opacity-5"
@@ -28,11 +29,11 @@ export default function Feed() {
             </a>
           </div>
           <div>
-            <Card />
+            <LastBook />
           </div>
         </section>
         <section className="flex flex-col gap-4 max-w-[40rem]">
-          <span className="text-gray100 text-sm">Avaliações mais recentes</span>
+          <p className="text-gray100 text-sm">Avaliações mais recentes</p>
           <div className="flex flex-col gap-3">
             <Card />
             <Card />
