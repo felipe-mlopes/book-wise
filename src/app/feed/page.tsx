@@ -1,63 +1,35 @@
-import { Card } from '../../components/Feed/Card';
-import { Sidebar } from '../../components/Global/Sidebar';
-import { BookCard } from '../../components/Global/BookCard';
+import Link from "next/link";
 
-import { ChevronRight } from 'lucide-react';
-import { LineChart } from 'lucide-react';
-import { LastBook } from '../../components/Feed/LastBook';
+import { Sidebar } from "@/components/Global/Sidebar";
+import { Header } from "@/components/Global/Header";
+import { LastReviewUserLogged } from "@/components/Feed/BookReviews/LastReviewUserLogged";
+import { BookReviewList } from "@/components/Feed/BookReviews/BookReviewList";
+import { ChevronIcon } from "@/components/Icons/ChevronIcon";
+import { TrendingList } from "@/components/Feed/TrendingBooks/TrendingList";
+
 
 export default function Feed() {
   return (
     <div className="grid grid-rows-feed grid-cols-feed mt-5 ml-5 gap-x-16 gap-y-10 overflow-hidden">
       <Sidebar />
-      <header className="col-span-2">
-        <div className="flex items-center gap-3 ml-8 pt-12">
-          <LineChart className="h-6 w-6 text-green100" />
-          <h2 className="text-2xl font-bold text-gray100">Início</h2>
-        </div>
-      </header>
+      <Header page="feed" />
       <main className="row-span-2 space-y-10 ml-8">
-        <section className="flex flex-col gap-4 max-w-[40rem]">
-          <div className="flex items-center justify-between">
-            <p className="text-gray100 text-sm">Sua última leitura</p>
-            <a
-              href=""
-              className="flex items-center gap-2 py-1 px-2 rounded text-purple100 text-sm font-bold cursor-pointer hover:bg-purple100 hover:bg-opacity-5"
-            >
-              Ver todas
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-          <div>
-            <LastBook />
-          </div>
-        </section>
-        <section className="flex flex-col gap-4 max-w-[40rem]">
-          <p className="text-gray100 text-sm">Avaliações mais recentes</p>
-          <div className="flex flex-col gap-3">
-            <Card />
-            <Card />
-            <Card />
-          </div>
-        </section>
+        <LastReviewUserLogged />
+        <BookReviewList />
       </main>
       <aside className="row-span-3 space-y-4 max-w-[20.25rem]">
         <div className="flex items-center justify-between">
           <span className="text-gray100 text-sm">Livros populares</span>
-          <a
-            href=""
+          <Link
+            href="/explore"
             className="flex items-center gap-2 py-1 px-2 rounded text-purple100 text-sm font-bold cursor-pointer hover:bg-purple100 hover:bg-opacity-5"
           >
             Ver todos
-            <ChevronRight className="w-4 h-4" />
-          </a>
+            <ChevronIcon type="right" w={16} h={16} />
+          </Link>
         </div>
-        <div className="space-y-3">
-          <BookCard w="4rem" h="5.875rem" />
-          <BookCard w="4rem" h="5.875rem" />
-          <BookCard w="4rem" h="5.875rem" />
-        </div>
+        <TrendingList />
       </aside>
     </div>
-  );
+  )
 }
