@@ -1,5 +1,3 @@
-'use client'
-
 import { Star } from 'lucide-react'
 
 interface StarProps {
@@ -7,7 +5,6 @@ interface StarProps {
 }
 
 export function StarRating({ fill }: StarProps) {
-
   return (
     <div className='flex gap-1'>
       {[...Array(5)].map((_, idx) => {
