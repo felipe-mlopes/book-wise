@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
 
   const ratings = userRatings?.ratings.map(rating => {
     const id = rating.id
-    const createAt = handleTransformDateInDaysOrWeeks(rating.created_at.toDateString())
+    const createdAt = handleTransformDateInDaysOrWeeks(rating.created_at.toDateString())
     const description = rating.description
     const rate = rating.rate
     const bookId = rating.book.id
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
   
     return {
       id,
-      createAt,
+      createdAt,
       description,
       rate,
       bookId,
