@@ -13,7 +13,7 @@ const fetcher = (id: string): Promise<BookRatingsFetchResponse> => fetch(
 export function useBookRatings(id: string) {
   const { data, isLoading, fetchStatus } = useQuery({
     queryFn: () => fetcher(id),
-    queryKey: ['bookRatings']
+    queryKey: ['bookRatings', id]
   })
   
   return {
