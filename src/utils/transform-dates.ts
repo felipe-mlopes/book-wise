@@ -10,7 +10,7 @@ export function handleTransformDateInDaysOrWeeks(oldDate: string) {
 
   switch (true) {
     case differenceInDays === 0:
-      result = "hoje";
+      result = "Hoje";
       break;
     case differenceInDays === 1:
       result = "Há 1 dia";
