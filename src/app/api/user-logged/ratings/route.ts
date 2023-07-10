@@ -4,6 +4,7 @@ import { getToken } from "next-auth/jwt";
 
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "../../auth/[...nextauth]/route";
+import { handleTransformDateInDaysOrWeeks } from "@/utils/transform-dates";
 
 export async function GET(request: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -20,16 +21,14 @@ export async function GET(request: NextRequest) {
 
   const userId = token?.sub
 
-  const ratingsProfile = await prisma.user.findUnique({
+  const userRatings = await prisma.user.findUnique({
     where: {
       id: userId
     },
     select: {
-      id: true,
-      name: true,
-      avatar_url: true,
       ratings: {
         select: {
+          id: true,
           created_at: true,
           description: true,
           rate: true,
@@ -46,7 +45,40 @@ export async function GET(request: NextRequest) {
     }
   })
 
+  userRatings?.ratings.sort((a, b) => {
+    const dateA = new Date(a.created_at);
+    const dateB = new Date(b.created_at);
+
+    if (dateA > dateB) return -1;
+    if (dateA < dateB) return 1
+
+    return 0
+  })
+
+  const ratings = userRatings?.ratings.map(rating => {
+    const id = rating.id
+    const createAt = handleTransformDateInDaysOrWeeks(rating.created_at.toDateString())
+    const description = rating.description
+    const rate = rating.rate
+    const bookId = rating.book.id
+    const bookName = rating.book.name
+    const bookAuthor = rating.book.author
+    const bookCover = rating.book.cover_url
+  
+    return {
+      id,
+      createAt,
+      description,
+      rate,
+      bookId,
+      bookName,
+      bookAuthor,
+      bookCover
+    }
+  })
+
+
   return NextResponse.json({
-    ratingsProfile
+    ratings
   })
 }
