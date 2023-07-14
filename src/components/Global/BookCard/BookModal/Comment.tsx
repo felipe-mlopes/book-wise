@@ -6,6 +6,13 @@ import * as z from "zod";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Rating } from "react-simple-star-rating";
 import { Avatar } from "../../Avatar";
+import { CloseIcon } from "@/components/Icons/CloseIcon";
+import { CheckIcon } from "@/components/Icons/CheckIcon";
+
+interface CommentTypes {
+  name: string,
+  avatarUrl: string
+}
 
 type commentSchemaType = z.infer<typeof commentSchema>
 
@@ -14,7 +21,7 @@ const commentSchema = z.object({
   comment: z.string().max(450, { message: "Você estourou o limite de caracteres nesse comentário." })
 })
 
-export function Comment() {
+export function Comment({ name, avatarUrl }: CommentTypes) {
   const { register, handleSubmit, formState: { errors } } = useForm<commentSchemaType>({
     resolver: zodResolver(commentSchema)
   })
@@ -22,7 +29,7 @@ export function Comment() {
   function handleCreateComment (event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    console.log(event.currentTarget)
+    console.log(event.currentTarget.value)
   }
 
   return (
@@ -32,8 +39,8 @@ export function Comment() {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          {/* <Avatar src="https://avatars.githubusercontent.com/u/60843113?v=4" width="40px" height="40px" /> */}
-          <strong className="text-gray100">Cristofer Rosser</strong>
+          <Avatar src={avatarUrl} width={40} height={40}/>
+          <strong className="text-gray100">{name}</strong>
         </div>
         <Rating 
           emptyStyle={{ display: "flex" }} 
@@ -62,13 +69,13 @@ export function Comment() {
             type="reset" 
             className="flex items-center justify-center bg-gray600 rounded p-2 cursor-pointer hover:bg-gray500"
           >
-            {/* <X className="w-6 h-6 text-purple100" /> */}
+            <CloseIcon />
           </button>
           <button 
             type="submit"
             className="flex items-center justify-center bg-gray600 rounded p-2 cursor-pointer hover:bg-gray500"
           >
-            {/* <Check className="w-6 h-6 text-green100" /> */}
+            <CheckIcon />
           </button>
         </div>
       </div>
