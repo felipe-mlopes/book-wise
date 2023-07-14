@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const idStartIndex = pathname.indexOf('=') + 1
   const bookId = pathname.substring(idStartIndex)
 
-  const book = await prisma.book.findUnique({
+  const bookRatings = await prisma.book.findUnique({
     where: {
       id: bookId
     },
@@ -44,5 +44,5 @@ export async function GET(request: NextRequest) {
     }
   })
 
-  return NextResponse.json({ book })
+  return NextResponse.json({ bookRatings })
 }
