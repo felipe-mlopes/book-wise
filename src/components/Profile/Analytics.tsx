@@ -3,16 +3,21 @@
 import { useProfileAnalytics } from "@/hooks/use-profile-analytics";
 import { Book, BookOpen, Bookmark, UserSquare2 } from "lucide-react";
 import Image from "next/image";
+import { LoadingAnalytics } from "./LoadingAnalytics";
 
 export function Analytics() {
   const { data, isLoading } = useProfileAnalytics()
+
+  if (isLoading) {
+    return <LoadingAnalytics />
+  }
 
   return (
     <aside className="flex flex-col items-center max-w-[20.25rem]">
       <div className="flex flex-col items-center gap-8 px-14 pb-5 border-l border-solid border-gray700">
         <div className="flex flex-col items-center gap-5">
           <Image
-            src={data?.avatar_url ?? ''}
+            src={data?.avatarUrl ?? ''}
             alt="imagem do avatar do usuário"
             width={72}
             height={72}
@@ -20,7 +25,7 @@ export function Analytics() {
           />
           <div className="flex flex-col items-center">
             <strong className="text-gray100 text-xl">{data?.name}</strong>
-            <p className="text-gray400 text-sm">membro desde {data?.created_at}</p>
+            <p className="text-gray400 text-sm">membro desde {data?.createdAt}</p>
           </div>
         </div>
         <div className="w-8 h-1 bg-green100 rounded-full" />
