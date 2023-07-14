@@ -13,15 +13,11 @@ const fetcher = (id: string): Promise<BookRatingsFetchResponse> => fetch(
 export function useBookRatings(id: string) {
   const { data, isLoading } = useQuery({
     queryFn: () => fetcher(id),
-    queryKey: ['bookRatings', id],
-    initialData: null,
-    onSuccess: (data) => {
-      reactQueryClient.cache.setQueryData('bookRatings', id, data)
-    }
+    queryKey: ['bookRatings', id]
   })
   
   return {
-    data: data?.bookRatings,
+    dataBook: data?.bookRatings,
     isLoading
   }
 }
