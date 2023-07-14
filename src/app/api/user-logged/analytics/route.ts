@@ -72,9 +72,9 @@ export async function GET(request: NextRequest) {
     }
   })
 
-  const avatarUrl = userAnalytics?.avatar_url
+  const avatarUrl = userAnalytics?.avatar_url!
   const name = userAnalytics?.name
-  const createdAt = userAnalytics?.created_at.getFullYear().toString()
+  const createdAt = userAnalytics?.created_at.getFullYear()
   const booksReadAmount = userAnalytics?.ratings.map(rating => rating.book.id).length
   const distinctAuthorsReadAmount = userAnalytics?.ratings.reduce((count: string[], rating: RatingsTypes) => {
       const author = rating.book.author
