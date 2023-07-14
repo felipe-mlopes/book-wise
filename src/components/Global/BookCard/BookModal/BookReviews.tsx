@@ -1,37 +1,29 @@
 'use client'
 
 import { useSession } from "next-auth/react";
-
 import { useBookRatings } from "@/hooks/use-book-ratings";
 import { useModal } from "@/hooks/use-modal";
-
 import { LoadingBookReviews } from "./LoadingBookReviews";
 import { Review } from "./Review";
 import { LoginModal } from "../../Login/LoginModal";
-
 import { BookRatingsProps } from "@/@types/book-ratings";
-
+import { Comment } from "./Comment";
 
 export interface BookReviewsTypes {
   bookId: string,
 }
 
 export function BookReviews({ bookId }: BookReviewsTypes) {
-  const { status } = useSession()
+  const { status, data } = useSession()
   const isSigned = status === 'authenticated'
 
-  const { data, isLoading, fetchStatus } = useBookRatings(bookId)
+  const { dataBook, isLoading } = useBookRatings(bookId)
   
   const { isLoginModalOpen, handleLoginModal } = useModal()
 
   if (!isLoading) {
     return <LoadingBookReviews />
   }
-
-  console.log(bookId)
-  console.log(data)
-  console.log(fetchStatus)
-
 
   return (
     <div className="space-y-4">
@@ -49,11 +41,12 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
       </div>
 
       <div className="space-y-3">
-        {/* { isSigned && 
+        { isSigned && 
           <Comment 
-            book_id={id}
-          /> } */}
-        {/* { data?.map((book: BookRatingsProps) => (
+            name={data?.user?.name ?? ''}
+            avatarUrl={data?.user?.avatar_url ?? ''}
+          /> }
+        { dataBook?.map((book: BookRatingsProps) => (
             <Review 
               key={book.id}
               reviewCreatedAt={book.created_at}
@@ -62,7 +55,7 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
               reviewUserAvatar={book.user.avatar_url}
               reviewUserName={book.user.name}
             />
-        ))} */}
+        ))}
       </div>
     </div>
   )
