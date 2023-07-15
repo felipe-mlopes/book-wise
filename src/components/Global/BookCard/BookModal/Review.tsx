@@ -9,7 +9,7 @@ interface ReviewTypes {
   reviewRatings: number,
   reviewUserAvatar: string,
   reviewUserName: string,
-  isNewReview?: boolean
+  isUserReview?: boolean
 }
 
 export function Review({ 
@@ -18,13 +18,13 @@ export function Review({
   reviewRatings, 
   reviewUserAvatar, 
   reviewUserName,
-  isNewReview = false 
+  isUserReview = false 
 }: ReviewTypes) {
   
   const createdAt = handleTransformDateInDaysOrWeeks(reviewCreatedAt)
 
   return (
-    <div data-active={isNewReview} className="p-6 rounded-lg space-y-5 bg-gray700 data-[active=true]:bg-gray600">
+    <div data-active={isUserReview} className="p-6 rounded-lg space-y-5 bg-gray700 data-[active=true]:bg-gray600">
       <div className="flex items-center justify-between">
         <div className="flex gap-4">
           <Avatar src={reviewUserAvatar} width={40} height={40} />

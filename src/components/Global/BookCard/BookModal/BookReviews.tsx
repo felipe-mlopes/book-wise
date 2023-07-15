@@ -54,6 +54,7 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
               reviewRatings={userRating.rate}
               reviewUserName={userRating.user.name}
               reviewUserAvatar={userRating.user.avatar_url}
+              isUserReview={true}
             />
           ))
         }
