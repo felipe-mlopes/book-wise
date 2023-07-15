@@ -69,7 +69,7 @@ export function Comment({ name, avatarUrl }: CommentTypes) {
             type="reset" 
             className="flex items-center justify-center bg-gray600 rounded p-2 cursor-pointer hover:bg-gray500"
           >
-            <CloseIcon />
+            <CloseIcon isCancelButton={true} />
           </button>
           <button 
             type="submit"
