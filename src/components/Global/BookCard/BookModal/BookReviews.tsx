@@ -43,8 +43,10 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
       <div className="space-y-3">
         { isSigned && userRatingData?.length === 0 ? 
           <Comment 
-            name={data?.user?.name ?? ''}
-            avatarUrl={data?.user?.image ?? ''}
+            bookId={bookId}
+            userId={data?.token?.sub.toString() ?? ''}
+            userName={data?.user?.name ?? ''}
+            userAvatarUrl={data?.user?.image ?? ''}
           /> :
           userRatingData?.map((userRating: BookRatingsProps) => (
             <Review 
