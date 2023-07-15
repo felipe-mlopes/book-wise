@@ -17,11 +17,11 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
   const { status, data } = useSession()
   const isSigned = status === 'authenticated'
 
-  const { dataBook, isLoading } = useBookRatings(bookId)
+  const { ratingsData, userRatingData , isLoading } = useBookRatings(bookId)
   
   const { isLoginModalOpen, handleLoginModal } = useModal()
 
-  if (!isLoading) {
+  if (isLoading && !isSigned) {
     return <LoadingBookReviews />
   }
 
@@ -41,21 +41,35 @@ export function BookReviews({ bookId }: BookReviewsTypes) {
       </div>
 
       <div className="space-y-3">
-        { isSigned && 
+        { isSigned && userRatingData?.length === 0 ? 
           <Comment 
             name={data?.user?.name ?? ''}
-            avatarUrl={data?.user?.avatar_url ?? ''}
-          /> }
-        { dataBook?.map((book: BookRatingsProps) => (
+            avatarUrl={data?.user?.image ?? ''}
+          /> :
+          userRatingData?.map((userRating: BookRatingsProps) => (
             <Review 
-              key={book.id}
-              reviewCreatedAt={book.created_at}
-              reviewDescription={book.description}
-              reviewRatings={book.rate}
-              reviewUserAvatar={book.user.avatar_url}
-              reviewUserName={book.user.name}
+              key={userRating.id}
+              reviewCreatedAt={userRating.created_at}
+              reviewDescription={userRating.description}
+              reviewRatings={userRating.rate}
+              reviewUserName={userRating.user.name}
+              reviewUserAvatar={userRating.user.avatar_url}
             />
-        ))}
+          ))
+        }
+        { isSigned && isLoading ? 
+            <LoadingBookReviews /> : 
+            ratingsData?.map((rating: BookRatingsProps) => (
+              <Review 
+                key={rating.id}
+                reviewCreatedAt={rating.created_at}
+                reviewDescription={rating.description}
+                reviewRatings={rating.rate}
+                reviewUserAvatar={rating.user.avatar_url}
+                reviewUserName={rating.user.name}
+              />
+            ))
+        }
       </div>
     </div>
   )
