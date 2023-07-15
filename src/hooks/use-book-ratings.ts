@@ -2,22 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import { BookRatingsProps } from "@/@types/book-ratings";
 
  interface BookRatingsFetchResponse {
-  bookRatings: BookRatingsProps[]
+  ratings: BookRatingsProps[],
+  userRatings: BookRatingsProps[]
 }
 
 const fetcher = (id: string): Promise<BookRatingsFetchResponse> => fetch(
-  `api/books/book/${id}`, { 
+  `api/books/book/id=${id}`, { 
     method: 'GET' 
   }).then(res => res.json())
 
 export function useBookRatings(id: string) {
   const { data, isLoading } = useQuery({
     queryFn: () => fetcher(id),
-    queryKey: ['bookRatings', id]
+    queryKey: ['ratings', 'userRatings', id]
   })
   
   return {
-    dataBook: data?.bookRatings,
+    ratingsData: data?.ratings,
+    userRatingData: data?.userRatings,
     isLoading
   }
 }
