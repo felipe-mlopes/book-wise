@@ -6,25 +6,15 @@ import { LastRatingUserLoggedProps } from "@/@types/last-rating-user-logged";
 }
 
 const fetcher = (): Promise<LastRatingUserLoggedFetchResponse> => 
-  fetch('/api/users/logged/last-rating', { 
+  fetch('api/user-logged/last-rating', { 
     method: 'GET' 
-  }).then(res => {
-    if (!res.ok) {
-      throw new Error("Nenhum usuário está logado.")
-    }
-    return res.json()
-  })
-    .catch(error => console.log(error))
+  }).then(res => res.json())
 
 export function useLastRatingUserLogged() {
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: fetcher,
     queryKey: ['lastRatingUserLogged']
   })
-
-  if (!isSuccess) {
-    return { data: [] }
-  }
 
   return {
     data: data?.lastRatingUserLogged,
