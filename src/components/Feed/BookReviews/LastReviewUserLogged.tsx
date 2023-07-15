@@ -1,12 +1,13 @@
 'use client'
 
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import { useLastRatingUserLogged } from "@/hooks/use-last-rating-user-logged";
 import { LoadingLastReviewUserLogged } from "./LoadingLastReviewUserLogged";
 import { ChevronIcon } from "@/components/Icons/ChevronIcon";
-import { LastRatingUserLoggedProps } from "@/@types/last-rating-user-logged";
 import { ReviewUserLoggedCard } from "./ReviewUserLoggedCard";
+import { LastRatingUserLoggedProps } from "@/@types/last-rating-user-logged";
 
 
 export function LastReviewUserLogged() {
@@ -16,7 +17,7 @@ export function LastReviewUserLogged() {
   const { data, isLoading } = useLastRatingUserLogged()
   const hasData = data?.length! > 0
 
-  if (isLoading && hasData) {
+  if (isLoading && !hasData) {
     return <LoadingLastReviewUserLogged />
   }
   
@@ -26,13 +27,13 @@ export function LastReviewUserLogged() {
         <section className="flex flex-col gap-4 max-w-[40rem]">
           <div className="flex items-center justify-between">
             <p className="text-gray100 text-sm">Sua última leitura</p>
-            <a
-              href=""
+            <Link
+              href="/profile"
               className="flex items-center gap-2 py-1 px-2 rounded text-purple100 text-sm font-bold cursor-pointer hover:bg-purple100 hover:bg-opacity-5"
             >
               Ver todas
-              <ChevronIcon type="right" w={16} h={16} />
-            </a>
+              <ChevronIcon type="right" />
+            </Link>
           </div>
           <div>
             { data?.map((bookCard: LastRatingUserLoggedProps) => {
