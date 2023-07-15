@@ -29,7 +29,7 @@ export function SearchInput({ placeholder }: SearchInputProps) {
         className="min-w-[23rem] text-sm text-gray200 placeholder:text-gray400 placeholder:text-sm cursor-text"
       />
       <button type="button">
-        <SearchIcon styles="cursor-pointer group-focus-within:text-green200" />
+        <SearchIcon className="cursor-pointer group-focus-within:text-green200" />
       </button>
     </label>
   );
