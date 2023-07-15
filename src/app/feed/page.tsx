@@ -25,7 +25,7 @@ export default function Feed() {
             className="flex items-center gap-2 py-1 px-2 rounded text-purple100 text-sm font-bold cursor-pointer hover:bg-purple100 hover:bg-opacity-5"
           >
             Ver todos
-            <ChevronIcon type="right" w={16} h={16} />
+            <ChevronIcon type="right" />
           </Link>
         </div>
         <TrendingList />

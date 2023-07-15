@@ -41,7 +41,7 @@ export function Tags() {
         disabled={currentPage === 0} 
         className="cursor-pointer disabled:cursor-not-allowed"
       >
-        <ChevronIcon type="left" w={48} h={48} isDisabled={currentPage === 0} />
+        <ChevronIcon type="left" isTag={true} isDisabled={currentPage === 0} />
       </button>
       {currentTags?.map((category, idx) => {
         const isSelected = category === selectedTag
@@ -66,7 +66,7 @@ export function Tags() {
         disabled={endIdx >= data?.length!} 
         className="cursor-pointer disabled:cursor-not-allowed"
       >
-        <ChevronIcon type="right" w={48} h={48} isDisabled={endIdx >= data?.length!} />
+        <ChevronIcon type="right" isTag={true} isDisabled={endIdx >= data?.length!} />
       </button>
     </ul>
   )
