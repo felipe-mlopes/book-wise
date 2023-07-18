@@ -12,7 +12,8 @@ const fetcher = (): Promise<CategoriesFetchResponse> => fetch(
 export function useCategories() {
   const { data, isLoading } = useQuery({
     queryFn: fetcher,
-    queryKey: ['allCategories']
+    queryKey: ['allCategories'],
+    refetchOnWindowFocus: false
   })
 
   return {
