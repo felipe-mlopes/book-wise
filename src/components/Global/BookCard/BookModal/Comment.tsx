@@ -8,6 +8,8 @@ import { Rating } from "react-simple-star-rating";
 import { Avatar } from "../../Avatar";
 import { CloseIcon } from "@/components/Icons/CloseIcon";
 import { CheckIcon } from "@/components/Icons/CheckIcon";
+import { useAddUserRating, useBookRatings } from "@/hooks/use-book-ratings";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface CommentTypes {
   bookId: string,
@@ -18,8 +20,13 @@ interface CommentTypes {
 
 type commentSchemaType = z.infer<typeof commentSchema>
 
+export interface CommentProps extends commentSchemaType {
+  book_id: string,
+  user_id: string
+}
+
 const commentSchema = z.object({
-  comment: z
+  description: z
     .string()
     .min(10, { message: "A avaliação precisa ter no mínimo 10 caracteres." })
     .max(450, { message: "Você estourou o limite de caracteres dessa avaliação." }),
@@ -34,29 +41,28 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
     handleSubmit, 
     watch,
     formState: { isSubmitting, isSubmitSuccessful ,errors } 
-  } = useForm<commentSchemaType>({
+  } = useForm<CommentProps>({
     resolver: zodResolver(commentSchema)
   })
 
-  const watchComment = watch("comment")
+  const watchComment = watch("description")
   const characterTextAreaCount = watchComment ? watchComment.length : 0
+
+  const { mutate: onCreateComment } = useAddUserRating()
 
   function handleSetRate(rate: number) {
     setValue('rate', rate)
   }
 
-  function handleCreateComment(data: commentSchemaType) {
+  function handleCreateComment(data: CommentProps) {
     const commentData = {
       rate: data.rate,
-      description: data.comment,
+      description: data.description,
       book_id: bookId,
       user_id: userId
     }
 
-    fetch('api/ratings/new-rating', {
-      method: 'POST',
-      body: JSON.stringify(commentData)
-    }).then(res => res.json())
+    onCreateComment(commentData)
   }
 
   if (isSubmitSuccessful) {
@@ -91,12 +97,12 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
             placeholder="Escreva sua avaliação" 
             maxLength={450} 
             className="bg-gray800 py-[14px] min-h-[164px] px-5 border border-solid border-gray500 rounded text-sm text-gray200 placeholder:text-gray400 placeholder:text-sm cursor-text resize-none outline-none scrollbar-thin scrollbar-track-gray700 scrollbar-thumb-gray600 group-focus-within:border-green200"
-            {...register('comment')}
+            {...register('description')}
           />
           <span className="absolute bottom-2 right-3 text-gray400 text-xs group-focus-within:text-green200">{characterTextAreaCount}/450</span>
         </label>
         <span className="space-y-1 w-full pl-1">
-          {errors.comment && <p className="text-xs text-red">{errors.comment.message}</p>}
+          {errors.description && <p className="text-xs text-red">{errors.description.message}</p>}
           {errors.rate && <p className="text-xs text-red">{errors.rate.message}</p>}
         </span>
         <div className="flex items-center gap-2">
