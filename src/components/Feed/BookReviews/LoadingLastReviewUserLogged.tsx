@@ -21,7 +21,7 @@ export function LoadingLastReviewUserLogged() {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <p className="w-10 h-4 bg-gray600 rounded" />
-              <span role="img" aria-label="ícone" className="w-24 h-4 bg-gray600 rounded" />
+              <span role="img" aria-label="ícones de estrela sobre avaliação dos livros" className="w-24 h-4 bg-gray600 rounded" />
             </div>
             <div className="flex flex-col gap-1">
               <strong className="w-52 h-5 bg-gray600 rounded" />

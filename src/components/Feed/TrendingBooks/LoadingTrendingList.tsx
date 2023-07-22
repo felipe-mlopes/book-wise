@@ -3,11 +3,6 @@ export function LoadingTrendingList() {
 
   return (
     <div className="space-y-3">
-      {/* <Skeleton className="w-[20.25rem] h-[8.125rem]" />
-      <Skeleton className="w-[20.25rem] h-[8.125rem]" />
-      <Skeleton className="w-[20.25rem] h-[8.125rem]" />
-      <Skeleton className="w-[20.25rem] h-[8.125rem]" /> */}
-
       {fakeList.map((_, idx) => (
         <div key={idx} className="animate-pulse space-y-5 px-5 py-4 w-80 rounded-lg bg-gray700">
           <div className="flex gap-5 cursor-pointer">
