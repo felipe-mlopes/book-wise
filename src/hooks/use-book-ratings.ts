@@ -32,13 +32,16 @@ export function useBookRatings(id: string) {
   }
 }
 
-export function useAddUserRating() {
+export function useAddUserRating(id: string) {
   const queryClient = useQueryClient()
 
   return useMutation({ 
       mutationFn: newUserRating,
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['userRatings'] })
+        queryClient.invalidateQueries({ 
+          queryKey: ['ratings', 'userRatings', id],
+          exact: false
+        })
       }
     })
 }
