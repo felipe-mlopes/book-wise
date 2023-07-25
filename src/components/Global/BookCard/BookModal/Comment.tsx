@@ -48,7 +48,7 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
   const watchComment = watch("description")
   const characterTextAreaCount = watchComment ? watchComment.length : 0
 
-  const { mutate: onCreateComment } = useAddUserRating()
+  const { mutate: onCreateComment } = useAddUserRating(bookId)
 
   function handleSetRate(rate: number) {
     setValue('rate', rate)
