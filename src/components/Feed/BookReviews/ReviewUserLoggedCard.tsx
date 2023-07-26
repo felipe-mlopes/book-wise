@@ -4,6 +4,7 @@ import { capitalizeFirstLetters } from '@/utils/capitalize-first-letters'
 import { handleTransformDateInDaysOrWeeks } from "@/utils/transform-dates";
 
 import { StarRating } from "@/components/Global/StarRating";
+import { BookReviewDescription } from "./BookReviewDescription";
 
 interface ReviewUserLoggedCardTypes {
   createdAt: string,
@@ -14,13 +15,13 @@ interface ReviewUserLoggedCardTypes {
   bookCover: string
 }
 
-export function ReviewUserLoggedCard({ 
-  createdAt, 
-  description, 
-  rate, 
-  bookName, 
-  bookAuthor, 
-  bookCover 
+export function ReviewUserLoggedCard({
+  createdAt,
+  description,
+  rate,
+  bookName,
+  bookAuthor,
+  bookCover
 }: ReviewUserLoggedCardTypes) {
 
   const date = handleTransformDateInDaysOrWeeks(createdAt)
@@ -34,7 +35,7 @@ export function ReviewUserLoggedCard({
         alt="capa do livro"
         width={108}
         height={152}
-        className="rounded"
+        className="rounded max-h-[9.5rem]"
       />
       <div className="space-y-6 w-[26.75rem]">
         <div className="space-y-3">
@@ -48,9 +49,7 @@ export function ReviewUserLoggedCard({
           </div>
 
         </div>
-        <p className="text-gray300 text-sm">
-          {description}
-        </p>
+        <BookReviewDescription content={description} maxWords={15} />
       </div>
     </div>
   )
