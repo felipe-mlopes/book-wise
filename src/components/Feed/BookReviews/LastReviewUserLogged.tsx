@@ -1,29 +1,21 @@
-'use client'
-
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
-import { useLastRatingUserLogged } from "@/hooks/use-last-rating-user-logged";
-import { LoadingLastReviewUserLogged } from "./LoadingLastReviewUserLogged";
-import { ChevronIcon } from "@/components/Icons/ChevronIcon";
+import { useGetSession } from "@/hooks/use-get-session";
+import { useGetLastRatingUserLogged } from "@/hooks/use-get-last-rating-user-logged";
+
 import { ReviewUserLoggedCard } from "./ReviewUserLoggedCard";
 import { LastRatingUserLoggedProps } from "@/@types/last-rating-user-logged";
+import { ChevronIcon } from "@/components/Icons/ChevronIcon";
 
 
-export function LastReviewUserLogged() {
-  const { status } = useSession()
-  const isSignedId = status === 'authenticated'
-    
-  const { data, isLoading } = useLastRatingUserLogged()
-  const hasData = data?.length! > 0
+export async function LastReviewUserLogged() {
+  const session = await useGetSession()
+  const { userLastRating } = await useGetLastRatingUserLogged()
+  const hasData = userLastRating.length > 0
 
-  if (isLoading && !hasData) {
-    return <LoadingLastReviewUserLogged />
-  }
-  
   return (
     <>
-      { isSignedId && hasData ? (
+      {session && hasData && (
         <section className="flex flex-col gap-4 max-w-[40rem]">
           <div className="flex items-center justify-between">
             <p className="text-gray100 text-sm">Sua última leitura</p>
@@ -36,9 +28,9 @@ export function LastReviewUserLogged() {
             </Link>
           </div>
           <div>
-            { data?.map((bookCard: LastRatingUserLoggedProps) => {
+            {userLastRating.map((bookCard: LastRatingUserLoggedProps) => {
               return (
-                <ReviewUserLoggedCard 
+                <ReviewUserLoggedCard
                   key={bookCard.id}
                   createdAt={bookCard.created_at}
                   description={bookCard.description}
@@ -48,10 +40,11 @@ export function LastReviewUserLogged() {
                   bookCover={bookCard.book.cover_url}
                 />
               )
-            }) }
+            })}
           </div>
         </section>
-      ) : '' }
+      )}
+      {!session && ''}
     </>
   )
 }
