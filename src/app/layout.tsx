@@ -3,6 +3,7 @@ import { nunito } from './styles/fonts'
 import { Provider } from '@/components/Provider'
 import { ModalContextProvider } from '@/contexts/modal-context'
 import { FilterContextProvider } from '@/contexts/filter-context'
+import { TagsContextProvider } from '@/contexts/tags-context'
 
 
 export const metadata = {
@@ -21,7 +22,9 @@ export default function RootLayout({
         <Provider>
           <ModalContextProvider>
             <FilterContextProvider>
-              {children}
+              <TagsContextProvider>
+                {children}
+              </TagsContextProvider>
             </FilterContextProvider>
           </ModalContextProvider>
         </Provider>
