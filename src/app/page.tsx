@@ -1,14 +1,13 @@
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 
+import { useGetSession } from "@/hooks/use-get-session";
 import { Hero } from "@/components/Home/Hero";
 import { RocketIcon } from "@/components/Icons/RocketIcon";
 import { LoginProviders } from "@/components/Global/Login/LoginProviders";
 
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  const session = await useGetSession()
 
   if (session) {
     redirect('/feed')
