@@ -27,7 +27,8 @@ module.exports = {
         gray600: '#252D4A',
         gray700: '#181C2A',
         gray800: '#0E1116',
-        red: '#F75A68'
+        red100: '#F75A68',
+        red200: '#DE515E',
       },
       fill: {
         white: '#FFFFFF',
@@ -47,7 +48,7 @@ module.exports = {
         gray600: '#252D4A',
         gray700: '#181C2A',
         gray800: '#0E1116',
-        red: '#F75A68'
+        red100: '#F75A68'
       },
       boxShadow: {
         modal: '4px 16px 24px rgba(0, 0, 0, 0.25)',
