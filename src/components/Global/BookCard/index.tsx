@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { StarRating } from '@/components/Global/StarRating';
 import { BookModal } from './BookModal';
+import { BookInfo } from './BookModal/BookInfo';
 
 interface BookCardTypes {
   id: string,
@@ -18,18 +19,18 @@ interface BookCardTypes {
 }
 
 
-export function BookCard({ 
+export function BookCard({
   id,
   coverUrl,
-  name, 
-  author, 
+  name,
+  author,
   categories,
   totalPages,
   ratingsAverage,
   ratingsAmount,
 }: BookCardTypes) {
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
-  
+
   function handleBookModal() {
     setIsBookModalOpen(!isBookModalOpen)
   }
@@ -57,18 +58,21 @@ export function BookCard({
         </div>
       </div>
       <BookModal
-        bookId={id} 
-        bookCover={cover}
-        bookTitle={name}
-        bookAuthor={author}
-        bookCategories={categories}
-        bookTotalPages={totalPages}
-        bookRatingsAverage={ratingsAverage}
-        bookRatingsAmount={ratingsAmount}
-        isOpen={isBookModalOpen} 
-        onClose={handleBookModal} 
-      />
+        bookId={id}
+        isOpen={isBookModalOpen}
+        onClose={handleBookModal}
+      >
+        <BookInfo
+          bookTitle={name}
+          bookCover={cover}
+          bookAuthor={author}
+          bookTotalPages={totalPages}
+          bookCategories={categories}
+          bookRatingsAmount={ratingsAmount}
+          bookRatingsAverage={ratingsAverage}
+        />
+      </BookModal>
     </div>
- 
+
   );
 }
