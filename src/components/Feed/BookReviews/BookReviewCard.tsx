@@ -5,6 +5,7 @@ import { capitalizeFirstLetters } from '@/utils/capitalize-first-letters';
 
 import { StarRating } from '../../Global/StarRating';
 import { Avatar } from '../../Global/Avatar';
+import { BookReviewDescription } from './BookReviewDescription';
 
 interface CardTypes {
   rate: number,
@@ -17,15 +18,15 @@ interface CardTypes {
   bookName: string
 }
 
-export function BookReviewCard({ 
-  rate, 
+export function BookReviewCard({
+  rate,
   description,
-  createdDate, 
-  userAvatar, 
-  userName, 
-  bookAuthor, 
-  bookCover, 
-  bookName 
+  createdDate,
+  userAvatar,
+  userName,
+  bookAuthor,
+  bookCover,
+  bookName
 }: CardTypes) {
 
   const cover = bookCover ? bookCover.slice(19).replace('jpg', 'png') : ''
@@ -51,17 +52,14 @@ export function BookReviewCard({
           alt="capa do livro"
           width={108}
           height={152}
-          className="rounded"
+          className="rounded max-h-[9.5rem]"
         />
         <div className="flex flex-col justify-between gap-5">
           <div>
             <strong className="text-gray100 text-base">{bookTitle}</strong>
             <p className="text-gray400 text-sm">{bookAuthor}</p>
           </div>
-          <p className="text-gray300 text-sm">
-            {description}
-            <a className="text-purple100 cursor-pointer">ver mais</a>
-          </p>
+          <BookReviewDescription content={description} maxWords={35} />
         </div>
       </div>
     </div>
