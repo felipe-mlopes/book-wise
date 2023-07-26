@@ -1,3 +1,5 @@
+'use client'
+
 import { handleTransformDateInDaysOrWeeks } from "@/utils/transform-dates";
 
 import { Avatar } from "../../Avatar";
@@ -12,21 +14,21 @@ interface ReviewTypes {
   isUserReview?: boolean
 }
 
-export function Review({ 
-  reviewCreatedAt, 
-  reviewDescription, 
-  reviewRatings, 
-  reviewUserAvatar, 
+export function Review({
+  reviewCreatedAt,
+  reviewDescription,
+  reviewRatings,
+  reviewUserAvatar,
   reviewUserName,
-  isUserReview = false 
+  isUserReview = false
 }: ReviewTypes) {
-  
+
   const createdAt = handleTransformDateInDaysOrWeeks(reviewCreatedAt)
 
   return (
     <div data-active={isUserReview} className="p-6 rounded-lg space-y-5 bg-gray700 data-[active=true]:bg-gray600">
-      <div className="flex items-center justify-between">
-        <div className="flex gap-4">
+      <div className="flex justify-between">
+        <div className="flex items-center gap-4">
           <Avatar src={reviewUserAvatar} width={40} height={40} />
           <div>
             <strong className="text-gray100 text-base font-bold">{reviewUserName}</strong>
@@ -35,7 +37,9 @@ export function Review({
         </div>
         <StarRating fill={reviewRatings} />
       </div>
-      <p className="text-gray300 text-sm">{reviewDescription}</p>
+      <p className="text-gray300 text-sm">
+        {reviewDescription}
+      </p>
     </div>
   )
 }
