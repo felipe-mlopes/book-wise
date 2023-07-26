@@ -2,7 +2,7 @@ export function LoadingTrendingList() {
   const fakeList = [...Array(4)]
 
   return (
-    <div className="space-y-3">
+    <>
       {fakeList.map((_, idx) => (
         <div key={idx} className="animate-pulse space-y-5 px-5 py-4 w-80 rounded-lg bg-gray700">
           <div className="flex gap-5 cursor-pointer">
@@ -25,6 +25,6 @@ export function LoadingTrendingList() {
           </div>
         </div>
       ))}
-    </div>
+    </>
   )
 }
