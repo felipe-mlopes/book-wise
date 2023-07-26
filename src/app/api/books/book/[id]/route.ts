@@ -1,7 +1,8 @@
-import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+import { prisma } from "@/lib/prisma";
+
 
 export async function GET(request: NextRequest) {
   const token = await getToken({
