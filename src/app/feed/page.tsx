@@ -10,7 +10,7 @@ import { TrendingList } from "@/components/Feed/TrendingBooks/TrendingList";
 
 export default function Feed() {
   return (
-    <div className="grid grid-rows-feed grid-cols-feed mt-5 ml-5 gap-x-16 gap-y-10 overflow-hidden">
+    <div className="grid grid-rows-feed grid-cols-feed mt-5 mb-4 ml-5 gap-x-16 gap-y-10 overflow-hidden">
       <Sidebar />
       <Header page="feed" />
       <main className="row-span-2 space-y-10 ml-8">
