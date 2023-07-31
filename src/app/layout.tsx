@@ -4,6 +4,7 @@ import { Provider } from '@/components/Provider'
 import { ModalContextProvider } from '@/contexts/modal-context'
 import { FilterContextProvider } from '@/contexts/filter-context'
 import { TagsContextProvider } from '@/contexts/tags-context'
+import { FeedContextProvider } from '@/contexts/feed-context'
 
 
 export const metadata = {
@@ -21,11 +22,13 @@ export default function RootLayout({
       <body className={`${nunito.variable} bg-gray800`}>
         <Provider>
           <ModalContextProvider>
-            <FilterContextProvider>
-              <TagsContextProvider>
-                {children}
-              </TagsContextProvider>
-            </FilterContextProvider>
+            <FeedContextProvider>
+              <FilterContextProvider>
+                <TagsContextProvider>
+                  {children}
+                </TagsContextProvider>
+              </FilterContextProvider>
+            </FeedContextProvider>
           </ModalContextProvider>
         </Provider>
       </body>
