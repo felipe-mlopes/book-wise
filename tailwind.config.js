@@ -59,10 +59,16 @@ module.exports = {
         contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)'
       },
       gridTemplateColumns: {
-        feed: '15% 50% 35%'
+        lg: '18% 82%',
+        card: '20% 80%'
       },
       gridTemplateRows: {
-        feed: '7% 93%'
+        global: '11vh 89vh',
+        card: '15% 25% 60%'
+      },
+      screens: {
+        'm': '375px',
+        'xs': '425px'
       }
     }
   },
