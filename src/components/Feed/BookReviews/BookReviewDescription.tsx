@@ -5,17 +5,18 @@ import { splitRatingsDescription } from "@/utils/split-ratings-description"
 
 interface BookReviewDescriptionProps {
   content: string,
-  maxWords: number
+  wordsAmount: number
 }
 
-export function BookReviewDescription({ content, maxWords }: BookReviewDescriptionProps) {
+
+export function BookReviewDescription({ content, wordsAmount }: BookReviewDescriptionProps) {
   const [description, setDescription] = useState('')
   const [isActive, setIsActive] = useState(true)
 
   const contentArray = content.split(' ').length
-  const isLongDescription = contentArray > maxWords
+  const isLongDescription = contentArray > wordsAmount
 
-  const { shortRatingDescription, restRatingDescription } = splitRatingsDescription(content, maxWords)
+  const { shortRatingDescription, restRatingDescription } = splitRatingsDescription(content, wordsAmount)
   const showLongDescription = description.replace('... ', restRatingDescription)
 
   useEffect(() => {
@@ -37,7 +38,6 @@ export function BookReviewDescription({ content, maxWords }: BookReviewDescripti
       {description}
       <button
         onClick={handleExpandDescription}
-        disabled={!isLongDescription}
         data-active={isLongDescription && isActive}
         className="text-purple100 cursor-pointer data-[active=false]:invisible disabled:cursor-not-allowed"
       >
