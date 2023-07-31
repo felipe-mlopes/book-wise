@@ -9,7 +9,7 @@ export async function TrendingList() {
   const trendingBooks = books.slice(0, 4)
 
   return (
-    <section className="space-y-3">
+    <aside className="space-y-3">
       {trendingBooks.map((book: BookCardProps) => (
         <BookCard
           key={book.id}
@@ -21,8 +21,9 @@ export async function TrendingList() {
           totalPages={book.totalPages}
           ratingsAverage={book.ratingsAverage}
           ratingsAmount={book.ratingsAmount}
+          isTrending='trending'
         />
       ))}
-    </section>
+    </aside>
   )
 }
