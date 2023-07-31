@@ -2,6 +2,7 @@ import { BinocularsIcon } from "@/components/Icons/BinocularsIcon"
 import { ChartLineUpIcon } from "@/components/Icons/ChartLineUpIcon"
 import { UserIcon } from "@/components/Icons/UserIcon"
 import { SearchInput } from "../SearchInput"
+import { Logo } from "../Logo"
 
 interface HeaderProps {
   page: 'feed' | 'explore' | 'profile'
@@ -12,36 +13,37 @@ export function Header({ page }: HeaderProps) {
   function wichPathnameIsSelected(value: string) {
     if (value === 'feed') {
       return (
-        <header className="col-span-2 flex items-center gap-3 ml-8 mt-12">
+        <div className="flex items-center gap-3 mb-2">
           <ChartLineUpIcon type="header" />
-          <h2 className="text-2xl font-bold text-gray100">Início</h2>
-        </header>
+          <h2 className="text-lg font-bold text-gray100 md:text-xl lg:text-2xl">Início</h2>
+        </div>
       )
     } if (value === 'explore') {
       return (
-        <header className="col-span-2 flex items-baseline justify-between gap-3 ml-8 mr-52">
-          <div className="flex items-center gap-3 ">
+        <div className="flex items-baseline justify-between gap-3 mr-52 mb-2">
+          <div className="flex items-center gap-3">
             <BinocularsIcon type="header" />
-            <h2 className="text-2xl font-bold text-gray100">Explorar</h2>
+            <h2 className="text-lg font-bold text-gray100 md:text-xl lg:text-2xl">Explorar</h2>
           </div>
-          <div className="pt-10">
+          <div className="pt-8">
             <SearchInput placeholder="Buscar livro ou autor" />
           </div>
-        </header>
+        </div>
       )
     } if (value === 'profile') {
       return (
-        <header className="col-span-2 flex items-center gap-3 ml-8 mt-12">
+        <div className="flex items-center gap-3 mb-2">
           <UserIcon type="header" />
-          <h2 className="text-2xl font-bold text-gray100">Profile</h2>
-        </header>
+          <h2 className="text-lg font-bold text-gray100 md:text-xl lg:text-2xl">Perfil</h2>
+        </div>
       )
     }
   }
 
   return (
-    <>
+    <header className="flex flex-col justify-end gap-6 absolute top-6 z-0 md:col-start-1 md:col-end-1 md:row-start-1 md:row-end-1 md:relative md:top-0 md:ml-8 lg:col-start-2 lg:col-end-2 lg:row-start-1 lg:row-end-1">
+      <Logo className="flex items-center gap-3 lg:hidden lg:invisible" />
       {wichPathnameIsSelected(page)}
-    </>
+    </header>
   )
 }
