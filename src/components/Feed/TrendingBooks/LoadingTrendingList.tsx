@@ -4,7 +4,7 @@ export function LoadingTrendingList() {
   return (
     <>
       {fakeList.map((_, idx) => (
-        <div key={idx} className="animate-pulse space-y-5 px-5 py-4 w-80 rounded-lg bg-gray700">
+        <div key={idx} className="animate-pulse space-y-5 px-5 py-4 max-w-xs rounded-lg bg-gray700">
           <div className="flex gap-5 cursor-pointer">
             <div
               role="img"
@@ -16,9 +16,9 @@ export function LoadingTrendingList() {
                 <strong className="w-40 h-4 bg-gray600 rounded" />
                 <p className="w-24 h-4 bg-gray600 rounded" />
               </div>
-              <span 
-                role="img" 
-                aria-label="ícone de estrelas" 
+              <span
+                role="img"
+                aria-label="ícone de estrelas"
                 className="w-24 h-4 bg-gray600 rounded"
               />
             </div>
