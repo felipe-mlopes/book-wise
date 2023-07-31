@@ -16,6 +16,7 @@ interface BookCardTypes {
   totalPages: number,
   ratingsAverage: number,
   ratingsAmount: number,
+  isTrending?: 'trending' | undefined
 }
 
 
@@ -28,6 +29,7 @@ export function BookCard({
   totalPages,
   ratingsAverage,
   ratingsAmount,
+  isTrending
 }: BookCardTypes) {
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
 
@@ -37,16 +39,27 @@ export function BookCard({
 
   const cover = coverUrl ? coverUrl.slice(19).replace('jpg', 'png') : ''
 
+
   return (
-    <div className="space-y-5 px-5 py-4 w-80 rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600">
-      <div className="flex gap-5 cursor-pointer" onClick={handleBookModal}>
-        <Image
+    <div className={`space-y-5 px-5 py-4 rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 ${isTrending === 'trending' && `lg:min-w-[15rem] xl:min-w-[20.25rem]`}`}>
+      <div
+        className="flex gap-5 cursor-pointer"
+        onClick={handleBookModal}
+      >
+        {isTrending === undefined && <Image
           src={cover}
           alt="capa do livro"
           width={108}
           height={152}
-          className='rounded'
-        />
+          className="rounded"
+        />}
+        {isTrending === 'trending' && <Image
+          src={cover}
+          alt="capa do livro"
+          width={64}
+          height={94}
+          className="rounded"
+        />}
         <div className="flex flex-col justify-between">
           <div>
             <strong className="text-gray100 text-base">
