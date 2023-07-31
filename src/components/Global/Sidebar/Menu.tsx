@@ -38,7 +38,7 @@ export function Menu() {
       </div>
       <div className="group relative">
         <Link
-          className={`flex items-center gap-3 text-base cursor-pointer py-2 px-4  ${pathname === '/profile' ? `font-bold text-gray100` : `text-gray400 group-hover:text-gray100`} ${!isSignedId && 'invisible' }`}
+          className={`flex items-center gap-3 text-base cursor-pointer py-2 px-4  ${pathname === '/profile' ? `font-bold text-gray100` : `text-gray400 group-hover:text-gray100`} ${!isSignedId && 'invisible'}`}
           href="/profile"
         >
           <div className={`${pathname !== '/profile' && 'invisible'} absolute top-2 left-0 rounded w-1 h-6 bg-green100`} />
