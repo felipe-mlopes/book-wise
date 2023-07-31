@@ -1,19 +1,11 @@
-import Image from "next/image";
-import hero from '../../assets/images/hero.svg'
 import { Logo } from "../Global/Logo";
+
 
 export function Hero() {
   return (
-    <div className="relative">
-      <Image
-        src={hero}
-        alt=""
-        width={598}
-        height={912}
-        className="relative rounded-lg"
-      />
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/4">
-        <Logo w={48} h={48} size="2.25rem" />
+    <div className="bg-none md:relative md:h-screen md:mr-8 md:bg-[url('../../assets/images/hero.svg')] md:bg-cover md:rounded-lg">
+      <div className="md:absolute md:left-[40%] md:-translate-x-1/4 md:top-1/2">
+        <Logo hero />
       </div>
     </div>
   )
