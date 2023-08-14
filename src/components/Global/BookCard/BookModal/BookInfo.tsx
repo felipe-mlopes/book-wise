@@ -14,14 +14,14 @@ interface BookInfoTypes {
   bookRatingsAmount: number,
 }
 
-export function BookInfo({ 
-  bookCover, 
-  bookTitle, 
-  bookAuthor, 
-  bookCategories, 
-  bookTotalPages, 
-  bookRatingsAverage, 
-  bookRatingsAmount, 
+export function BookInfo({
+  bookCover,
+  bookTitle,
+  bookAuthor,
+  bookCategories,
+  bookTotalPages,
+  bookRatingsAverage,
+  bookRatingsAmount,
 }: BookInfoTypes) {
 
   const bookCategoriesWithoutLastItem = bookCategories.filter(book => book !== "Tudo")
@@ -29,25 +29,31 @@ export function BookInfo({
 
   const RatingsCount = bookRatingsAmount > 1 ? `${bookRatingsAmount} avaliações` : `${bookRatingsAmount} avaliação`
 
-  return (       
-    <div className="bg-gray700 text-gray700 rounded-[10px] px-8 pt-6 pb-4 space-y-10">
-      <div className="flex items-center gap-8">
-        <Image src={bookCover} alt="" width={172} height={242} className="rounded-[10px]" />
-        <div className="space-y-24 w-[18.5rem]">
+  return (
+    <div className="bg-gray700 text-gray700 rounded-[10px] p-4 xs:p-6 sm:px-8 sm:pt-6 sm:pb-4 space-y-10">
+      <div className="flex gap-5 xs:gap-8 h-full">
+        <Image
+          src={bookCover}
+          alt="capa do livro selecionado"
+          width={172}
+          height={242}
+          className="rounded-[10px] object-cover"
+        />
+        <div className="flex flex-col justify-between xs:w-[18.5rem]">
           <div>
-            <strong className="text-gray100 text-lg">
+            <strong className="text-gray100 text-lg line-clamp-3 break-all xs:line-clamp-none md:break-normal">
               {bookTitle}
             </strong>
             <p className="text-gray300 text-base">{bookAuthor}</p>
           </div>
           <div>
-            <StarRating fill={bookRatingsAverage} />
+            <StarRating amount={bookRatingsAverage} />
             <p className="text-gray400 text-sm">{RatingsCount}</p>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-14 py-6 border-t border-solid border-gray600">
+      <div className="flex flex-col xs:flex-row xs:items-center gap-6 xs:gap-14 py-6 border-t border-solid border-gray600">
         <div className="flex items-center gap-4">
           <BookMarkIcon />
           <div>
@@ -63,6 +69,6 @@ export function BookInfo({
           </div>
         </div>
       </div>
-  </div>
+    </div>
   )
 }
