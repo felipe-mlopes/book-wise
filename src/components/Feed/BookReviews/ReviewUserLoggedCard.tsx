@@ -42,7 +42,7 @@ export function ReviewUserLoggedCard({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <p className="text-gray300 text-sm">{date}</p>
-              <StarRating fill={rate} />
+              <StarRating amount={rate} />
             </div>
             <div>
               <strong className="text-gray100 text-base">{bookTitle}</strong>
@@ -57,7 +57,7 @@ export function ReviewUserLoggedCard({
       <div className="flex flex-col gap-4 bg-gray600 rounded-lg py-5 px-6 xs:hidden xs:invisible">
         <div className="flex items-center justify-between">
           <p className="text-gray300 text-sm">{date}</p>
-          <StarRating fill={rate} />
+          <StarRating amount={rate} />
         </div>
         <div className="flex gap-4">
           <Image
