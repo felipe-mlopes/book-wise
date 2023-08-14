@@ -27,7 +27,7 @@ export function Review({
 
   return (
     <div data-active={isUserReview} className="p-6 rounded-lg space-y-5 bg-gray700 data-[active=true]:bg-gray600">
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-4 xs:flex-row xs:gap-0 xs:justify-between">
         <div className="flex items-center gap-4">
           <Avatar src={reviewUserAvatar} width={40} height={40} />
           <div>
@@ -35,7 +35,7 @@ export function Review({
             <p className="text-gray400 font-sm">{createdAt}</p>
           </div>
         </div>
-        <StarRating fill={reviewRatings} />
+        <StarRating amount={reviewRatings} className="flex gap-1 order-first xs:order-none" />
       </div>
       <p className="text-gray300 text-sm">
         {reviewDescription}
