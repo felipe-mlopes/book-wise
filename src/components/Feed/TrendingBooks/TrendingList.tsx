@@ -1,12 +1,10 @@
 import { BookCard } from "@/components/Global/BookCard"
 import { BookCardProps } from "@/@types/book-card"
-import { useGetAllBooks } from "@/hooks/use-get-all-books"
+import { useGetTrendingBooks } from "@/hooks/use-get-trending-books"
 
 
 export async function TrendingList() {
-  const { books } = await useGetAllBooks()
-
-  const trendingBooks = books.slice(0, 4)
+  const { trendingBooks } = await useGetTrendingBooks()
 
   return (
     <aside className="space-y-3">
