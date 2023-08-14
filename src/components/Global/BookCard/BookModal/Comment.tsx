@@ -8,8 +8,7 @@ import { Rating } from "react-simple-star-rating";
 import { Avatar } from "../../Avatar";
 import { CloseIcon } from "@/components/Icons/CloseIcon";
 import { CheckIcon } from "@/components/Icons/CheckIcon";
-import { useAddUserRating, useBookRatings } from "@/hooks/use-book-ratings";
-import { useQueryClient } from "@tanstack/react-query";
+import { useAddUserRating } from "@/hooks/use-book-ratings";
 import { LoadingReviews } from "./LoadingReviews";
 
 interface CommentTypes {
@@ -35,6 +34,7 @@ const commentSchema = z.object({
     .number({ required_error: "Você precisa selecionar a quantidade de estrelas para avaliação desse livro." })
 })
 
+
 export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentTypes) {
   const {
     register,
@@ -49,7 +49,7 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
   const watchComment = watch("description")
   const characterTextAreaCount = watchComment ? watchComment.length : 0
 
-  const { mutate: onCreateComment } = useAddUserRating(bookId)
+  const { mutate: onCreateComment, isLoading, isSuccess } = useAddUserRating(bookId)
 
   function handleSetRate(rate: number) {
     setValue('rate', rate)
@@ -66,12 +66,12 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
     onCreateComment(commentData)
   }
 
-  if (isSubmitting) {
+  if (isSubmitSuccessful && isLoading) {
     return <LoadingReviews amountReviews={1} />
   }
 
-  if (isSubmitSuccessful) {
-    return null
+  if (isSuccess) {
+    return <LoadingReviews amountReviews={1} />
   }
 
   return (
@@ -79,7 +79,7 @@ export function Comment({ bookId, userId, userName, userAvatarUrl }: CommentType
       onSubmit={handleSubmit(handleCreateComment)}
       className="p-6 space-y-6 bg-gray700 rounded-lg"
     >
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 xs:flex-row xs:gap-0 xs:items-center xs:justify-between">
         <div className="flex items-center gap-4">
           <Avatar src={userAvatarUrl} width={40} height={40} />
           <strong className="text-gray100">{userName}</strong>
