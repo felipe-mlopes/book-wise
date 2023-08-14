@@ -9,13 +9,13 @@ interface SearchInputProps {
 }
 
 export function SearchInput({ placeholder }: SearchInputProps) {
-  const { setSearch } = useFilter()
+  const { search, setSearch } = useFilter()
 
   function handleSearchToTitleOrAuthor(e: ChangeEvent<HTMLInputElement>) {
     const query = e.currentTarget.value
-      setSearch(query)
+    setSearch(query)
   }
-  
+
   return (
     <label
       htmlFor="searchInput"
@@ -25,8 +25,9 @@ export function SearchInput({ placeholder }: SearchInputProps) {
         type="text"
         name="searchInput"
         placeholder={placeholder}
+        value={search}
         onChange={handleSearchToTitleOrAuthor}
-        className="min-w-[23rem] text-sm text-gray200 placeholder:text-gray400 placeholder:text-sm cursor-text"
+        className="w-full md:min-w-[23rem] text-sm text-gray200 placeholder:text-gray400 placeholder:text-sm cursor-text"
       />
       <button type="button">
         <SearchIcon className="cursor-pointer group-focus-within:text-green200" />
