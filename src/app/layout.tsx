@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+      </head>
       <body className={`${nunito.variable} bg-gray800`}>
         <Provider>
           <ModalContextProvider>
