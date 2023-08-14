@@ -1,18 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 
- interface CategoriesFetchResponse {
+interface CategoriesFetchResponse {
   allCategories: string[]
 }
 
+const fetcher = (): Promise<CategoriesFetchResponse> => fetch(
+  'api/categories', {
+  method: 'GET'
+}).then(res => res.json())
 
-export async function useGetCategories() {
-  const response = await fetch('http://localhost:3000/api/categories', { 
-    next: {
-      revalidate: 60 * 10 // 10 minutos
-    } 
+
+export function useGetCategories() {
+  const { data, isLoading } = useQuery({
+    queryFn: fetcher,
+    queryKey: ['allCategories'],
+    refetchOnWindowFocus: false
   })
-  const data: CategoriesFetchResponse = await response.json()
-  const categories = data.allCategories
 
-  return { categories }
+  return {
+    categories: data?.allCategories,
+    isLoading
+  }
 }
