@@ -1,13 +1,13 @@
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 import { prisma } from "@/lib/prisma";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { useGetSession } from "@/hooks/use-get-session";
 import { handleTransformDateInDaysOrWeeks } from "@/utils/transform-dates";
 
+
 export async function GET(request: NextRequest) {
-  const session = await getServerSession(authOptions)
+  const session = await useGetSession()
 
   if (!session) {
     return NextResponse.json({ error: 'O usuário não está logado' }, { status: 400 })
@@ -76,7 +76,6 @@ export async function GET(request: NextRequest) {
       bookCover
     }
   })
-
 
   return NextResponse.json({
     ratings
