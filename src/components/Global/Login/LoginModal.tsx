@@ -13,6 +13,8 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   return (
     <div
+      role="dialog"
+      aria-label="loginmodal"
       className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0"
       onClick={onClose}
     >
