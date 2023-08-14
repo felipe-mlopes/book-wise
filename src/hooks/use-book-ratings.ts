@@ -38,7 +38,7 @@ export function useAddUserRating(id: string) {
   return useMutation({
     mutationFn: newUserRating,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userRatings'] })
-    }
+      queryClient.invalidateQueries({ queryKey: ['ratings', 'userRatings', id] })
+    },
   })
 }
