@@ -4,7 +4,8 @@ import { BookCardProps } from "@/@types/book-card";
 import { useFilter } from "./use-filter";
 
 interface AllBooksFetchResponse {
-  booksUpdate: BookCardProps[]
+  booksUpdate: BookCardProps[],
+  userId: string
 }
 
 const fetcher = (): Promise<AllBooksFetchResponse> =>
@@ -17,9 +18,10 @@ export function useGetAllBooks() {
   const { selectedTag, search } = useFilter()
   const { data, isLoading } = useQuery({
     queryFn: fetcher,
-    queryKey: ['booksUpdate']
+    queryKey: ['booksUpdate', 'userId']
   })
 
+  const userId = data?.userId
   const books = data?.booksUpdate
   const booksPerCategory = books?.filter(book => book.allCategories.includes(selectedTag))
   const filteredBooks = booksPerCategory?.filter(book =>
@@ -27,6 +29,7 @@ export function useGetAllBooks() {
 
   return {
     filteredBooks,
+    userId,
     isLoading
   }
 }
