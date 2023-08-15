@@ -7,6 +7,7 @@ export interface BookCardProps {
   totalPages: number,
   ratingsAmount: number,
   ratingsAverage: number,
+  ratingsUsers: string[],
   ratings: {
     rate?: number,
   }[]
