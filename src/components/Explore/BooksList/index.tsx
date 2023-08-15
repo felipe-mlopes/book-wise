@@ -7,14 +7,14 @@ import { LoadingBookList } from "./LoadingBookList"
 
 
 export function BooksList() {
-  const { filteredBooks, isLoading } = useGetAllBooks()
+  const { filteredBooks, userId, isLoading } = useGetAllBooks()
 
   if (isLoading) {
     return <LoadingBookList />
   }
 
   return (
-    <section className="flex flex-wrap justify-center lg:justify-start gap-5">
+    <section className="flex flex-wrap justify-center gap-5 lg:justify-start">
       {filteredBooks?.map((book: BookCardProps) => (
         <BookCard
           key={book.id}
@@ -26,6 +26,7 @@ export function BooksList() {
           totalPages={book.totalPages}
           ratingsAverage={book.ratingsAverage}
           ratingsAmount={book.ratingsAmount}
+          isRead={book.ratingsUsers.includes(userId!)}
         />
       ))
       }
