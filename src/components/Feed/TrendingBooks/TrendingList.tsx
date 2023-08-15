@@ -19,7 +19,7 @@ export async function TrendingList() {
           totalPages={book.totalPages}
           ratingsAverage={book.ratingsAverage}
           ratingsAmount={book.ratingsAmount}
-          isTrending='trending'
+          isTrending
         />
       ))}
     </aside>
