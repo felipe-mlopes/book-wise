@@ -1,8 +1,18 @@
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
-import { capitalizeFirstLetters } from "@/utils/capitalize-first-letters";
-import { NextResponse } from "next/server";
 
-export async function GET() {
+import { capitalizeFirstLetters } from "@/utils/capitalize-first-letters";
+
+export async function GET(request: NextRequest) {
+  const token = await getToken({
+    req: request,
+    secret: process?.env?.NEXTAUTH_SECRET,
+    cookieName: "next-auth.session-token"
+  })
+
+  const userId = token?.sub ?? ''
+
   const allBooks = await prisma.book.findMany({
     select: {
       id: true,
@@ -22,6 +32,7 @@ export async function GET() {
       ratings: {
         select: {
           rate: true,
+          user_id: true
         }
       }
     },
@@ -40,7 +51,7 @@ export async function GET() {
     const allCategories = book.categories.map(item => item.category.name)
     const newCategory = "Tudo"
     const categoriesFiltered = allCategories.includes(newCategory)
-  
+
     if (!categoriesFiltered) {
       allCategories.push(newCategory)
     }
@@ -49,6 +60,7 @@ export async function GET() {
     const ratingsAmount = book.ratings.length
     const ratingsAverage = Math.floor(book.ratings
       .reduce((sum, rating) => sum + rating.rate, 0) / ratingsAmount)
+    const ratingsUsers = book.ratings.map(rating => rating.user_id)
 
 
     return {
@@ -60,8 +72,9 @@ export async function GET() {
       totalPages,
       ratingsAmount,
       ratingsAverage,
+      ratingsUsers
     }
   })
 
-  return NextResponse.json({ booksUpdate })
+  return NextResponse.json({ booksUpdate, userId })
 }
