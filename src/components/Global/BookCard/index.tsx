@@ -17,7 +17,8 @@ interface BookCardTypes {
   totalPages: number,
   ratingsAverage: number,
   ratingsAmount: number,
-  isTrending?: 'trending' | undefined
+  isTrending?: boolean,
+  isRead?: boolean
 }
 
 
@@ -30,7 +31,8 @@ export function BookCard({
   totalPages,
   ratingsAverage,
   ratingsAmount,
-  isTrending
+  isTrending,
+  isRead
 }: BookCardTypes) {
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
 
@@ -42,25 +44,24 @@ export function BookCard({
 
 
   return (
-    <div className={`space-y-5 px-5 py-4 w-64 h-40 md:w-80 md:h-auto rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 ${isTrending === 'trending' && `lg:min-w-[15rem] xl:min-w-[20.25rem]`}`}>
+    <div
+      data-trending={isTrending}
+      className={`space-y-5 px-5 py-4 w-64 h-40 md:w-80 md:h-auto rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 relative data-[trending=true]:lg:min-w-[15rem] data-[trending=true]:xl:min-w-[20.25rem]`}
+    >
       <div
-        className="flex gap-3 md:gap-5 cursor-pointer"
+        data-check={isRead}
+        data-trending={isTrending}
+        className={`flex gap-3 py-2 cursor-pointer md:gap-5 data-[check=true]:after:content-["LIDO"] data-[check=true]:after:absolute data-[check=true]:after:top-[-2px] data-[check=true]:after:right-[-2px] data-[check=true]:after:py-1 data-[check=true]:after:px-3 data-[check=true]:after:bg-green300 data-[check=true]:after:rounded-tr-lg data-[check=true]:after:rounded-bl-[4px] data-[check=true]:after:text-green100 data-[check=true]:after:font-bold data-[check=true]:after:text-xs data-[trending=true]:py-0`}
         onClick={handleBookModal}
       >
-        {isTrending === undefined && <Image
+        <Image
           src={cover}
           alt="capa do livro"
           width={108}
           height={152}
-          className="max-w-[5.0625rem] max-h-[7.125rem] md:max-w-[6.75rem] md:max-h-[9.5rem] rounded"
-        />}
-        {isTrending === 'trending' && <Image
-          src={cover}
-          alt="capa do livro"
-          width={64}
-          height={94}
-          className="rounded"
-        />}
+          data-trending={isTrending}
+          className="rounded data-[trending=false]:max-w-[5.0625rem] data-[trending=false]:max-h-[7.125rem] data-[trending=false]:md:max-w-[6.75rem] data-[trending=false]:md:max-h-[9.5rem] data-[trending=true]:max-w-[4rem] data-[trending=true]:max-h-[5.875rem]"
+        />
         <div className="flex flex-col justify-between">
           <div>
             <strong className="text-gray100 text-base line-clamp-3">
