@@ -20,6 +20,7 @@ export function Categories() {
         tag="ul"
         slidesPerView={'auto'}
         spaceBetween={12}
+        style={{ padding: '16px 0' }}
       >
         {categories?.map((category, idx) => {
           const isSelected = category === selectedTag
@@ -30,10 +31,11 @@ export function Categories() {
               key={idx}
               tag="li"
               content={category}
+              tabIndex={0}
               onClick={() => setSelectedTag(category)}
               style={{ display: 'flex', justifyContent: 'center', width: 'fit-content', zIndex: 0 }}
               className={`
-                  py-2 px-4 border border-solid border-purple100 rounded-full text-purple100 text-sm cursor-pointer hover:bg-purple200 hover:text-gray100 active:bg-purple200 active:text-gray100
+                  py-2 px-4 border border-solid border-purple100 rounded-full text-purple100 text-sm cursor-pointer hover:bg-purple200 hover:text-gray100 active:bg-purple200 active:text-gray100 focus:outline-gray-100
                   ${isSelected || (isFirstItem && selectedTag === null) ? `bg-purple200 text-white` : ''}
               `}
             >
