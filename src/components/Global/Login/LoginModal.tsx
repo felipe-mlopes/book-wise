@@ -15,7 +15,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
     <div
       role="dialog"
       aria-label="loginmodal"
-      className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0"
+      className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0 z-50"
       onClick={onClose}
     >
       <div className="data-[state=open]:animate-contentShow fixed top-1/2 left-1/2 max-w-[516px] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-gray700 px-10 py-8 xs:px-14 xs:py-10 md:px-[4.5rem] md:py-14 shadow-modal focus:outline-none" onClick={(e) => e.stopPropagation()}>
