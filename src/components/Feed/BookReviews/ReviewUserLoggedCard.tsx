@@ -29,7 +29,7 @@ export function ReviewUserLoggedCard({
   const bookTitle = capitalizeFirstLetters(bookName)
 
   return (
-    <div className="flex flex-col items-center gap-4 bg-gray600 rounded-lg py-5 px-6 xs:flex-row xs:items-start xs:gap-6">
+    <div tabIndex={0} className="flex flex-col items-center gap-4 bg-gray600 rounded-lg py-5 px-6 xs:flex-row xs:items-start xs:gap-6">
       <Image
         src={cover}
         alt="capa do livro"

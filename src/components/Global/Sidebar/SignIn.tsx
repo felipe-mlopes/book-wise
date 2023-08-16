@@ -8,7 +8,7 @@ export function SignIn() {
   const { isLoginModalOpen, handleLoginModal } = useModal()
 
   return (
-    <div className="flex items-center gap-3 py-1 px-2 group">
+    <div tabIndex={0} className="flex items-center gap-3 py-1 px-2 group">
       <div className="flex items-center cursor-pointer" onClick={handleLoginModal}>
         <p className="text-gray200 font-bold text-base min-w-[6rem] group-hover:text-gray100">
           Fazer login

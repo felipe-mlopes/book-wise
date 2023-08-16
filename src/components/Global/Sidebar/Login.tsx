@@ -16,6 +16,7 @@ export async function Login() {
     <>
       {session && (
         <div
+          tabIndex={0}
           className="flex items-center justify-center gap-3 py-1 px-2 hover:bg-gray800 hover:rounded hover:border-purple100 hover:bg-opacity-5"
         >
           <Link href="/profile" className="flex items-center gap-3 w-full">

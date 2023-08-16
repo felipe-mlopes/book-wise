@@ -34,7 +34,7 @@ export function BookReviewCard({
   const bookTitle = capitalizeFirstLetters(bookName)
 
   return (
-    <div className="space-y-5 p-4 md:space-y-8 md:p-6 bg-gray700 rounded-lg border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600">
+    <div tabIndex={0} className="space-y-5 p-4 md:space-y-8 md:p-6 bg-gray700 rounded-lg border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600">
       <div className="flex flex-col items-center gap-4 xs:flex-row xs:items-start xs:gap-0 xs:justify-between">
         <div className="flex items-center gap-4">
           <Avatar src={userAvatar} width={40} height={40} />
