@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 
 import { StarRating } from '@/components/Global/StarRating';
 import { BookModal } from './BookModal';
@@ -40,19 +40,26 @@ export function BookCard({
     setIsBookModalOpen(!isBookModalOpen)
   }
 
-  const cover = coverUrl ? coverUrl.slice(19).replace('jpg', 'png') : ''
+  function handleKeyPress(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Enter') {
+      handleBookModal()
+    }
+  }
 
+  const cover = coverUrl ? coverUrl.slice(19).replace('jpg', 'png') : ''
 
   return (
     <div
+      tabIndex={0}
       data-trending={isTrending}
+      onClick={handleBookModal}
+      onKeyDown={handleKeyPress}
       className={`space-y-5 px-5 py-4 w-64 h-40 md:w-80 md:h-auto rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 relative data-[trending=true]:lg:min-w-[15rem] data-[trending=true]:xl:min-w-[20.25rem]`}
     >
       <div
         data-check={isRead}
         data-trending={isTrending}
-        className={`flex gap-3 py-2 cursor-pointer md:gap-5 data-[check=true]:after:content-["LIDO"] data-[check=true]:after:absolute data-[check=true]:after:top-[-2px] data-[check=true]:after:right-[-2px] data-[check=true]:after:py-1 data-[check=true]:after:px-3 data-[check=true]:after:bg-green300 data-[check=true]:after:rounded-tr-lg data-[check=true]:after:rounded-bl-[4px] data-[check=true]:after:text-green100 data-[check=true]:after:font-bold data-[check=true]:after:text-xs data-[trending=true]:py-0`}
-        onClick={handleBookModal}
+        className={`flex gap-3 py-2 md:gap-5 cursor-pointer data-[check=true]:after:content-["LIDO"] data-[check=true]:after:absolute data-[check=true]:after:top-[-2px] data-[check=true]:after:right-[-2px] data-[check=true]:after:py-1 data-[check=true]:after:px-3 data-[check=true]:after:bg-green300 data-[check=true]:after:rounded-tr-lg data-[check=true]:after:rounded-bl-[4px] data-[check=true]:after:text-green100 data-[check=true]:after:font-bold data-[check=true]:after:text-xs data-[trending=true]:py-0`}
       >
         <Image
           src={cover}
