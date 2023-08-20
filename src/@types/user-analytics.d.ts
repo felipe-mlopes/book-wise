@@ -19,7 +19,7 @@ export interface UserAnalyticsProps {
 export interface ProfileAnalyticsProps {
   avatarUrl: string,
   name: string,
-  createdAt: string,
+  createdAt: number,
   booksReadAmount: number,
   distinctAuthorsReadAmount: number,
   bookTotalPagesReadAmount: number,
