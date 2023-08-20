@@ -1,8 +1,8 @@
-import { getServerSession } from "next-auth";
-import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { getToken } from "next-auth/jwt";
+
 import { prisma } from "@/lib/prisma";
+import { useGetSession } from "@/hooks/use-get-session";
 
 export interface RatingsTypes {
   book: {
@@ -10,24 +10,23 @@ export interface RatingsTypes {
     author: string,
     total_pages: number,
     categories: {
-        category: {
-          name: string
-        }
+      category: {
+        name: string
+      }
     }[],
   }
 }
-
 interface CategoryCountsTypes {
   [key: string]: number;
 }
-
 interface MaxCategoryTypes {
   category: string;
   count: number;
 }
 
+
 export async function GET(request: NextRequest) {
-  const session = await getServerSession(authOptions)
+  const session = await useGetSession()
 
   if (!session) {
     return NextResponse.json({ error: 'O usuário não está logado' }, { status: 400 })
@@ -41,7 +40,7 @@ export async function GET(request: NextRequest) {
 
   const userId = token?.sub
 
-  const userAnalytics = await prisma.user.findUnique({
+  const userAnalytics = await prisma.user.findUniqueOrThrow({
     where: {
       id: userId
     },
@@ -77,18 +76,18 @@ export async function GET(request: NextRequest) {
   const createdAt = userAnalytics?.created_at.getFullYear()
   const booksReadAmount = userAnalytics?.ratings.map(rating => rating.book.id).length
   const distinctAuthorsReadAmount = userAnalytics?.ratings.reduce((count: string[], rating: RatingsTypes) => {
-      const author = rating.book.author
-      const existingAuthor = count.includes(author)
-      if (!existingAuthor) {
-          count.push(author)
-      }
-      
-      return count
+    const author = rating.book.author
+    const existingAuthor = count.includes(author)
+    if (!existingAuthor) {
+      count.push(author)
+    }
+
+    return count
   }, []).length
 
   const bookTotalPagesReadAmount = userAnalytics?.ratings.reduce((count, pages) => {
-      const totalPages = pages.book.total_pages
-      return count += totalPages
+    const totalPages = pages.book.total_pages
+    return count += totalPages
   }, 0)
 
   const categoryCounts = userAnalytics?.ratings.reduce((counts: CategoryCountsTypes, rating: RatingsTypes) => {
@@ -104,25 +103,25 @@ export async function GET(request: NextRequest) {
   }, {});
 
   const mostFrequentCategory = Object.entries(categoryCounts!).reduce(
-      (maxCategory: MaxCategoryTypes, [category, count]: [string, number]) => {
+    (maxCategory: MaxCategoryTypes, [category, count]: [string, number]) => {
       if (count > maxCategory.count) {
-        return { category, count } ;
+        return { category, count };
       } else {
         return maxCategory;
       }
     }, { category: '', count: 0 }).category
 
-    const userAnalyticsResults = {
-      avatarUrl,
-      name,
-      createdAt,
-      booksReadAmount,
-      distinctAuthorsReadAmount,
-      bookTotalPagesReadAmount,
-      mostFrequentCategory
-    }
+  const userAnalyticsResults = {
+    avatarUrl,
+    name,
+    createdAt,
+    booksReadAmount,
+    distinctAuthorsReadAmount,
+    bookTotalPagesReadAmount,
+    mostFrequentCategory
+  }
 
-  
+
   return NextResponse.json({
     userAnalyticsResults
   })
