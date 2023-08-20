@@ -19,7 +19,7 @@ export default async function Feed() {
         className="flex justify-end relative md:col-start-1 md:col-end-1 md:row-start-1 md:row-end-2 md:flex md:items-end md:justify-end md:mr-16  lg:flex lg:flex-col lg:items-center lg:justify-between lg:mr-0 lg:pt-10 lg:pb-6 lg:rounded-xl lg:h-[94vh] lg:bg-gray700"
       >
         <Sidebar className="hidden invisible lg:flex lg:flex-col lg:justify-between lg:items-center lg:visible lg:h-full" />
-        <DropdownMenu className="lg:hidden lg:invisible">
+        <DropdownMenu className="z-50 lg:hidden lg:invisible">
           <Login />
         </DropdownMenu>
       </aside>
