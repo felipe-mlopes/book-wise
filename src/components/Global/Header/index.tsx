@@ -32,7 +32,7 @@ export function Header({ page }: HeaderProps) {
       )
     } if (value === 'profile') {
       return (
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-center gap-3 mb-2 lg:ml-4 xl:ml-12">
           <UserIcon type="header" />
           <h2 className="text-lg font-bold text-gray100 md:text-xl lg:text-2xl">Perfil</h2>
         </div>
