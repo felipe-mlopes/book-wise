@@ -3,17 +3,17 @@
 import Link from "next/link";
 import { ChevronIcon } from "../Icons/ChevronIcon";
 import { ReactNode, useContext } from "react";
-import { FeedContext } from "@/contexts/feed-context";
+import { SectionContext } from "@/contexts/section-context";
 
 interface TrendingBooksProps {
   children: ReactNode
 }
 
 export function TrendingBooksSection({ children }: TrendingBooksProps) {
-  const { selectedSection } = useContext(FeedContext)
+  const { selectedFeedSection } = useContext(SectionContext)
 
   return (
-    <div className={`${selectedSection !== 'Livros Populares' && `hidden invisible md:block md:visible`} space-y-4 lg:mr-8 xl:mr-16`}>
+    <div className={`${selectedFeedSection !== 'Livros Populares' && `hidden invisible md:block md:visible`} space-y-4 lg:mr-8 xl:mr-16`}>
       <div className="flex items-center justify-between">
         <span className="text-gray100 text-sm">Livros populares</span>
         <Link

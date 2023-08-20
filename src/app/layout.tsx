@@ -4,7 +4,7 @@ import { Provider } from '@/components/Provider'
 import { ModalContextProvider } from '@/contexts/modal-context'
 import { FilterContextProvider } from '@/contexts/filter-context'
 import { TagsContextProvider } from '@/contexts/tags-context'
-import { FeedContextProvider } from '@/contexts/feed-context'
+import { FeedContextProvider } from '@/contexts/section-context'
 
 
 export const metadata = {
