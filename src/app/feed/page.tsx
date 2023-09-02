@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { Sidebar } from "@/components/Global/Sidebar";
 import { DropdownMenu } from "@/components/Global/DropdownMenu";
 import { Login } from "@/components/Global/Sidebar/Login";
@@ -9,8 +11,16 @@ import { BookReviewList } from "@/components/Feed/BookReviews/BookReviewList";
 import { TrendingBooksSection } from "@/components/Feed/TrendingBookSection";
 import { TrendingList } from "@/components/Feed/TrendingBooks/TrendingList";
 
+export const dynamic = 'force-dynamic'
 
-export default async function Feed() {
+
+export const metadata: Metadata = {
+  title: 'Feed',
+  description: 'Veja a timeline com as últimas avaliações dos principais livros no mercado.'
+}
+
+
+export default function Feed() {
   return (
     <div
       className="flex flex-col gap-4 m-4 md:grid md:grid-rows-global md:gap-6 md:my-4 md:mx-4 lg:grid-cols-lg lg:mt-5 lg:mr-0 lg:mb-4 lg:ml-4 lg:gap-y-16 lg:gap-x-4 xl:ml-5 xl:gap-y-10 xl:gap-x-10"

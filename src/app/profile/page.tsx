@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { Sidebar } from '../../components/Global/Sidebar';
 import { Header } from '@/components/Global/Header';
 import { SearchInput } from '../../components/Global/SearchInput';
@@ -8,6 +10,11 @@ import { Login } from '@/components/Global/Sidebar/Login';
 import { BookReviewSection } from '@/components/Feed/BookReviewSection';
 import { UserAnalyticsSection } from '@/components/Profile/UserReviews/UserAnalyticsSection';
 import { UserWrapper } from '@/components/Profile/UserWrapper';
+
+export const metadata: Metadata = {
+  title: 'Profile',
+  description: 'Acompanhe todas as suas avaliações já realizadas e análise do seu perfil.'
+}
 
 
 export default async function Profile() {

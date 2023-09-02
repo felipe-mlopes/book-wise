@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import { redirect } from "next/navigation";
 
 import { useGetSession } from "@/hooks/use-get-session";
 import { Hero } from "@/components/Home/Hero";
 import { RocketIcon } from "@/components/Icons/RocketIcon";
 import { LoginProviders } from "@/components/Global/Login/LoginProviders";
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Avalie seu livro preferido e compartilhe com todos usando o Book Wise.'
+}
 
 
 export default async function Home() {
@@ -27,7 +33,7 @@ export default async function Home() {
           <LoginProviders />
           <a
             href="/feed"
-            className={`flex items-center gap-4 lg:gap-5 pl-12 py-4 lg:px-6 lg:py-5 bg-gray600 rounded-md cursor-pointer hover:bg-gray500`}
+            className={`flex items-center gap-4 lg:gap-5 pl-5 py-4 md:pl-8 lg:py-5 lg:pl-6 bg-gray600 rounded-md cursor-pointer hover:bg-gray500`}
           >
             <RocketIcon />
             <strong className="text-sm text-gray200 mr-7 lg:mr-16 lg:text-lg">Acessar como visitante</strong>

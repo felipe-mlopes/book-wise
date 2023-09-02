@@ -8,8 +8,16 @@ import { FeedContextProvider } from '@/contexts/section-context'
 
 
 export const metadata = {
-  title: 'Book Wise',
-  description: 'Avalie seu livro preferido e compartilhe com todos.',
+  title: {
+    default: 'Book Wise',
+    template: '%s | Book Wise',
+  },
+  icons: {
+    icon: ['/favicon.ico'],
+    apple: ['/apple-touch-icon.png'],
+    shortcut: ['/apple-touch-icon.png']
+  },
+  manifest: '/site.webmanifest'
 }
 
 export default function RootLayout({
