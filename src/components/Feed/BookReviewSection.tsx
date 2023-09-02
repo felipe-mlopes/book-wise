@@ -9,13 +9,15 @@ interface BookReviewSectionProps {
 }
 
 export function BookReviewSection({ children, isProfile }: BookReviewSectionProps) {
-  const { selectedProfileSection } = useContext(SectionContext)
+  const { selectedFeedSection, selectedProfileSection } = useContext(SectionContext)
 
   return (
     <div
       data-page={isProfile}
-      className={`${selectedProfileSection !== 'Livros Avaliados' && `hidden invisible md:block md:visible`} 
-      space-y-5 md:space-y-10 max-md:min-w-[12rem] data-[page=true]:md:mr-8 data-[page=true]:lg:mr-16`}
+      className={`space-y-5 md:space-y-10 max-md:min-w-[12rem] data-[page=true]:md:mr-8 data-[page=true]:lg:mr-16
+      ${selectedFeedSection !== 'Avaliações' && `hidden invisible md:block md:visible`}
+      ${selectedProfileSection !== 'Livros Avaliados' && `hidden invisible md:block md:visible`} 
+      `}
     >
       {children}
     </div>

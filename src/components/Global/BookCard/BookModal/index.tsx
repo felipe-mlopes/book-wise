@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from "react";
+
 import { CloseIcon } from "@/components/Icons/CloseIcon";
 
 interface BookModalProps {
@@ -8,6 +9,7 @@ interface BookModalProps {
   onClose: () => void,
   children: ReactNode
 }
+
 
 export function BookModal({
   isOpen,
@@ -22,7 +24,8 @@ export function BookModal({
   return (
     <div
       role="dialog"
-      aria-label="bookmodal"
+      aria-labelledby="dialog1_label"
+      aria-modal="true"
       className="bg-gray800/60 data-[state=open]:animate-overlayShow fixed inset-0 z-50"
       onClick={onClose}
     >

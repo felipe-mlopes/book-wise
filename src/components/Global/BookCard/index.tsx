@@ -54,12 +54,12 @@ export function BookCard({
       data-trending={isTrending}
       onClick={handleBookModal}
       onKeyDown={handleKeyPress}
-      className={`space-y-5 px-5 py-4 w-64 h-40 md:w-80 md:h-auto rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 relative data-[trending=true]:lg:min-w-[15rem] data-[trending=true]:xl:min-w-[20.25rem]`}
+      className={`space-y-5 px-5 py-4 w-64 md:w-72 rounded-lg bg-gray700 border-solid border-2 border-transparent hover:border-solid hover:border-2 hover:border-gray600 relative data-[trending=true]:lg:min-w-[15rem] data-[trending=true]:xl:min-w-[20.25rem]`}
     >
       <div
         data-check={isRead}
         data-trending={isTrending}
-        className={`flex gap-3 py-2 md:gap-5 cursor-pointer data-[check=true]:after:content-["LIDO"] data-[check=true]:after:absolute data-[check=true]:after:top-[-2px] data-[check=true]:after:right-[-2px] data-[check=true]:after:py-1 data-[check=true]:after:px-3 data-[check=true]:after:bg-green300 data-[check=true]:after:rounded-tr-lg data-[check=true]:after:rounded-bl-[4px] data-[check=true]:after:text-green100 data-[check=true]:after:font-bold data-[check=true]:after:text-xs data-[trending=true]:py-0`}
+        className={`flex gap-3 py-2 xl:gap-5 cursor-pointer data-[check=true]:after:content-["LIDO"] data-[check=true]:after:absolute data-[check=true]:after:top-[-2px] data-[check=true]:after:right-[-2px] data-[check=true]:after:py-1 data-[check=true]:after:px-3 data-[check=true]:after:bg-green300 data-[check=true]:after:rounded-tr-lg data-[check=true]:after:rounded-bl-[4px] data-[check=true]:after:text-green100 data-[check=true]:after:font-bold data-[check=true]:after:text-xs data-[trending=true]:py-0`}
       >
         <Image
           src={cover}
@@ -71,7 +71,7 @@ export function BookCard({
         />
         <div className="flex flex-col justify-between">
           <div>
-            <strong className="text-gray100 text-base line-clamp-3">
+            <strong data-trending={isTrending} className="text-gray100 text-base line-clamp-3 break-all lg:break-normal data-[trending=true]:break-normal">
               {name}
             </strong>
             <p className="text-gray400 text-sm">{author}</p>
