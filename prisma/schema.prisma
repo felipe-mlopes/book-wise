@@ -27,10 +27,10 @@ model User {
 
 model Book {
   id          String   @id @default(uuid())
-  name        String
-  author      String
-  summary     String
-  cover_url   String
+  name        String   @db.Text
+  author      String   @db.Text
+  summary     String   @db.Text
+  cover_url   String   @db.Text
   total_pages Int
   created_at  DateTime @default(now())
 
